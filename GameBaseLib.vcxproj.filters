@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Adapter">
+      <UniqueIdentifier>{c805c193-777c-41fc-a0c5-6e896aab2857}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Adapter">
+      <UniqueIdentifier>{be0106b1-8711-4d18-86c1-9b9b5b6f0e8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Joypad">
+      <UniqueIdentifier>{5bbeac5b-b857-4dc9-8008-9d44af1ecc6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Joypad">
+      <UniqueIdentifier>{7977866d-4cd7-4544-9bbc-2a2621ab4b0a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLoop.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="IScene.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="murmuurVIDEO.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneHandler.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="3DObjectIrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="JoypadDXAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="MovieIrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="IrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Joypad.cpp">
+      <Filter>ソース ファイル\Joypad</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>ソース ファイル\Joypad</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalogStick.cpp">
+      <Filter>ソース ファイル\Joypad</Filter>
+    </ClCompile>
+    <ClCompile Include="lightIrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLoop.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GLAS.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="IScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="murmuurVIDEO.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneHandler.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MDA.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="MDAUtility.hpp">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="3DObjectIrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraIrrAdapter.hpp">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="IrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="JoypadDXAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="lightIrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="MovieIrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalogStick.h">
+      <Filter>ヘッダー ファイル\Joypad</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>ヘッダー ファイル\Joypad</Filter>
+    </ClInclude>
+    <ClInclude Include="Joypad.h">
+      <Filter>ヘッダー ファイル\Joypad</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
