@@ -2,6 +2,38 @@
 #include "MDA.h"
 #include <AngleUnit.h>
 
+struct DefaultCamera::Impl{
+	Impl(){};
+	Glas::Quaternion attitude;
+	Glas::Vector3f position;
+	unsigned int            cameraIndex;
+};
+
+DefaultCamera::DefaultCamera(){
+	__impl__ = std::make_shared<Impl>();
+}
+
+Glas::Quaternion DefaultCamera::getAttitude() const{
+	return __impl__->attitude;
+}
+
+Glas::Vector3f DefaultCamera::getPosition() const{
+	return __impl__->position;
+}
+
+Glas::Vector3f DefaultCamera::getLookAt() const{
+	return getPosition() + getAttitude() * Glas::Vector3f(0,0,1);
+}
+
+void DefaultCamera::setAttitude(Glas::Quaternion & q){
+	__impl__->attitude = q;
+}
+
+void DefaultCamera::setPosition(Glas::Vector3f & p){
+	__impl__->position = p;
+}
+
+
 struct TPSCamera::Impl{
 	Impl() : distance(4) {};
 	std::shared_ptr<I3DAgent> target;

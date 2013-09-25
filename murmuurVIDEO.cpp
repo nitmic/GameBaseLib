@@ -188,7 +188,7 @@ bool murmuurVIDEO::refresh(void) {
          }
       } else { // out of audio
          return false;
-      }   
+      }
    }
 #endif
 
@@ -481,9 +481,9 @@ void murmuurVIDEO::_closeAVFile(FilePtr file) {
     if(!file) return;
 
     for(i = 0;i < file->StreamsSize;i++) {
-        avcodec_close(file->Streams[i]->CodecCtx);
-        free(file->Streams[i]->Data);
-        free(file->Streams[i]->DecodedData);
+        if(file->Streams[i]->CodecCtx) avcodec_close(file->Streams[i]->CodecCtx);
+        if(file->Streams[i]->Data) free(file->Streams[i]->Data);
+		if(file->Streams[i]->DecodedData) free(file->Streams[i]->DecodedData);
         free(file->Streams[i]);
     }
     free(file->Streams);

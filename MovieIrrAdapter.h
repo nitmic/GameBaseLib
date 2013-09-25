@@ -32,7 +32,8 @@ namespace IrrAdapter{
 		bool open(std::string name);
 		bool refresh();
 		void close();
-
+		void draw();
+		~Movie();
 	private:
 		std::shared_ptr<irr::scene::IMeshSceneNode> m_pNode;
 		std::shared_ptr<murmuurVIDEO> m_VideoPlayer;

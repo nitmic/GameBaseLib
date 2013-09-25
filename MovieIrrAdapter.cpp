@@ -7,10 +7,10 @@
 
 namespace IrrAdapter{
 	Movie::Movie(){
-		auto node = GetSingleton<IrrApp>()->accessSceneManager()->addSphereSceneNode();
+		auto node = GetSingleton<IrrApp>()->accessSceneManager()->addCubeSceneNode(1, nullptr, -1, irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0), irr::core::vector3df(2, 2, 1));
 		m_pNode = std::shared_ptr<irr::scene::IMeshSceneNode>(node, IrrSafeRemove());
 		m_pNode->setMaterialFlag(irr::video::EMF_LIGHTING, false);
-		m_pNode->setMaterialTexture(0, GetSingleton<IrrApp>()->accessVideoDriver()->getTexture("color.png"));
+		m_pNode->setMaterialTexture(0, GetSingleton<IrrApp>()->accessVideoDriver()->getTexture("blank.png"));
 
 		m_VideoPlayer = std::shared_ptr<murmuurVIDEO>(
 			new murmuurVIDEO(
@@ -19,22 +19,32 @@ namespace IrrAdapter{
 				1024,
 				768,
 				m_pNode.get()
-			), SafeReleaseMurmuur);
+			));
 		m_Playing = false;
 	}
 	bool Movie::open(std::string name){
 		return m_Playing = m_VideoPlayer->open(name.c_str());
 	}
+	void Movie::draw(){
+		m_pNode->setVisible(true);
+	}
+
 	bool Movie::refresh(){
 		if(m_Playing && m_VideoPlayer->refresh()){
 			m_VideoPlayer->drawVideoTexture();
-		}else{
-			m_Playing = false;
+			return true;
 		}
+		m_Playing = false;
+		return false;
 	}
 
 	void Movie::close(){
+		if(!m_Playing) return;
 		m_VideoPlayer->close();
 		m_Playing = false;
+	}
+
+	Movie::~Movie(){
+		//close();
 	}
 };

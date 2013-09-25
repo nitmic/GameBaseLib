@@ -6,7 +6,7 @@
 
 namespace irr{
 	namespace scene{
-		class IMeshSceneNode;
+		class IAnimatedMeshSceneNode;
 	};
 };
 
@@ -14,7 +14,7 @@ namespace irr{
 namespace IrrAdapter{
 	class Drawer3DImpl{
 	private:
-		std::shared_ptr<irr::scene::IMeshSceneNode> m_Node;
+		std::shared_ptr<irr::scene::IAnimatedMeshSceneNode> m_Node;
 		tString m_name;
 		Glas::Vector3f m_Pos;
 		Glas::Quaternion m_Attitude;

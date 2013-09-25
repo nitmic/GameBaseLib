@@ -2,7 +2,9 @@
 #include <quaternion.h>
 #include <iterator>
 #include <boost\iterator\iterator_facade.hpp>
+#include <assert.h>
 #include <AngleUnit.h>
+
 #pragma warning( push )
 #pragma warning (disable:4244)
 #pragma warning(disable:4715)
@@ -21,6 +23,7 @@ namespace Glas{
 		unsigned int index;
 		Container * pBase;
 	};
+
 
 	template<class T>
 	class Vector2 : public irr::core::vector2d<T>{
@@ -49,8 +52,9 @@ namespace Glas{
 		iterator begin(){return iterator(this, 0);}
 	    iterator end(){return iterator(this, 2);}
 	};
-
+	
 	typedef Vector2<float> Vector2f;
+	typedef Vector2<int> Vector2i;
 
 
 	template<class T>

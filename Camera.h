@@ -22,6 +22,21 @@ public:
 
 class I3DAgent;
 
+
+class DefaultCamera : public ICamera{
+public:
+	void step(){};
+	Glas::Quaternion getAttitude() const;
+	Glas::Vector3f getPosition() const;
+	Glas::Vector3f getLookAt() const;
+	void setAttitude(Glas::Quaternion & q);
+	void setPosition(Glas::Vector3f & p);
+	DefaultCamera();
+private:
+	struct Impl;
+	std::shared_ptr<Impl> __impl__;
+};
+
 class TPSCamera : public ICamera{
 public:
 	void step();

@@ -5,6 +5,7 @@ class SceneHandler;
 
 class IScene{
 public:
+	virtual ~IScene() = 0 {};
 	virtual void step(
 		SceneHandler * sceneStack
 	) = 0;

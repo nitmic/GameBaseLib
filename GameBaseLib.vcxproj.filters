@@ -36,9 +36,6 @@
     <ClCompile Include="GameLoop.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="IScene.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="murmuurVIDEO.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -68,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="lightIrrAdapter.cpp">
       <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteIrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitScene.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="Joypad.h">
       <Filter>ヘッダー ファイル\Joypad</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteIrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitScene.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

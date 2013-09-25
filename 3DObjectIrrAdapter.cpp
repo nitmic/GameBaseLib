@@ -6,10 +6,12 @@
 
 IrrAdapter::Drawer3DImpl::Drawer3DImpl(){
 	std::fill(m_Scale.begin(), m_Scale.end(), 1);
-	auto node = GetSingleton<IrrApp>()->accessSceneManager()->addMeshSceneNode(
-		GetSingleton<IrrApp>()->accessSceneManager()->getMesh(IrrBlankXFile)
-	);
-	m_Node = std::shared_ptr<irr::scene::IMeshSceneNode>(node, IrrSafeRemove());
+	auto mesh = GetSingleton<IrrApp>()->accessSceneManager()->getMesh(IrrBlankXFile);
+	auto node = GetSingleton<IrrApp>()->accessSceneManager()->addAnimatedMeshSceneNode(mesh);
+	m_Node = std::shared_ptr<irr::scene::IAnimatedMeshSceneNode>(node, IrrSafeRemove());
+	m_Node->setAnimationSpeed(50);
+	m_Node->setFrameLoop(0,28);
+	m_Node->setMaterialType(irr::video::EMT_NORMAL_MAP_TRANSPARENT_VERTEX_ALPHA);
 }
 
 void IrrAdapter::Drawer3DImpl::setResouceName(tString name){

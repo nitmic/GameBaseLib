@@ -45,7 +45,9 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../TUL;../DXLibCore;../GameBaseLib;C:\Boost\boost_1_53_0;C:\irrlicht-1.8\include;C:\FFMpeg\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../TUL;../DXLibCore;../GameBaseLib;C:\Boost\boost_1_53_0;C:\irrlicht-1.8\include;C:\FFMpeg\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -73,21 +75,23 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SpriteIrrAdapter.cpp" />
     <ClCompile Include="3DObjectIrrAdapter.cpp" />
     <ClCompile Include="AnalogStick.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="IrrAdapter.cpp" />
-    <ClCompile Include="IScene.cpp" />
     <ClCompile Include="Joypad.cpp" />
     <ClCompile Include="JoypadDXAdapter.cpp" />
     <ClCompile Include="lightIrrAdapter.cpp" />
     <ClCompile Include="MovieIrrAdapter.cpp" />
     <ClCompile Include="murmuurVIDEO.cpp" />
     <ClCompile Include="SceneHandler.cpp" />
+    <ClCompile Include="WaitScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SpriteIrrAdapter.h" />
     <ClInclude Include="3DObjectIrrAdapter.h" />
     <ClInclude Include="AnalogStick.h" />
     <ClInclude Include="Button.h" />
@@ -106,6 +110,7 @@
     <ClInclude Include="MovieIrrAdapter.h" />
     <ClInclude Include="murmuurVIDEO.h" />
     <ClInclude Include="SceneHandler.h" />
+    <ClInclude Include="WaitScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
