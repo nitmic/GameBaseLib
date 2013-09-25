@@ -11,7 +11,9 @@ IrrAdapter::Drawer3DImpl::Drawer3DImpl(){
 	m_Node = std::shared_ptr<irr::scene::IAnimatedMeshSceneNode>(node, IrrSafeRemove());
 	m_Node->setAnimationSpeed(50);
 	m_Node->setFrameLoop(0,28);
-	m_Node->setMaterialType(irr::video::EMT_NORMAL_MAP_TRANSPARENT_VERTEX_ALPHA);
+	m_Node->setMaterialFlag(irr::video::EMF_ZBUFFER, true);
+	m_Node->setMaterialFlag(irr::video::EMF_ANTI_ALIASING, true);
+	m_Node->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 }
 
 void IrrAdapter::Drawer3DImpl::setResouceName(tString name){

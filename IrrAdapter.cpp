@@ -39,6 +39,7 @@ bool IrrApp::Setup(){
 	);
 	if (!device_raw) return false;
 	__impl__->device = std::shared_ptr<irr::IrrlichtDevice>(device_raw, IrrSafeRelease());
+	accessVideoDriver()->setTextureCreationFlag(irr::video::ETCF_ALWAYS_32_BIT);
 	return true;
 }
 
