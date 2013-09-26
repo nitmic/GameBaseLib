@@ -75,6 +75,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackgroundIrrAdapter.cpp" />
     <ClCompile Include="SpriteIrrAdapter.cpp" />
     <ClCompile Include="3DObjectIrrAdapter.cpp" />
     <ClCompile Include="AnalogStick.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="WaitScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackgroundIrrAdapter.h" />
     <ClInclude Include="SpriteIrrAdapter.h" />
     <ClInclude Include="3DObjectIrrAdapter.h" />
     <ClInclude Include="AnalogStick.h" />

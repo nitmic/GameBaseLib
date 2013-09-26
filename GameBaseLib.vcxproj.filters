@@ -72,6 +72,9 @@
     <ClCompile Include="WaitScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="BackgroundIrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="WaitScene.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundIrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
