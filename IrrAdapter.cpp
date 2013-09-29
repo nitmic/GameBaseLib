@@ -39,7 +39,10 @@ bool IrrApp::Setup(){
 	);
 	if (!device_raw) return false;
 	__impl__->device = std::shared_ptr<irr::IrrlichtDevice>(device_raw, IrrSafeRelease());
-	accessVideoDriver()->setTextureCreationFlag(irr::video::ETCF_ALWAYS_32_BIT);
+	
+	accessVideoDriver()->setTextureCreationFlag(irr::video::ETCF_ALWAYS_32_BIT,true); 
+	accessVideoDriver()->setTextureCreationFlag(irr::video::ETCF_ALWAYS_16_BIT,false); 
+	accessVideoDriver()->setTextureCreationFlag(irr::video::ETCF_CREATE_MIP_MAPS,false);
 	return true;
 }
 
