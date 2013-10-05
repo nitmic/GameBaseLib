@@ -140,5 +140,8 @@
     <ClInclude Include="BackgroundIrrAdapter.h">
       <Filter>ヘッダー ファイル\Adapter</Filter>
     </ClInclude>
+    <ClInclude Include="LerpAnimation.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

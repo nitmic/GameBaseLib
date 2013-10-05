@@ -4,7 +4,7 @@
 namespace{
 	void drawUnderScene(SceneHandler::iterator it, const SceneHandler::iterator & end){
 		if(it==end) return;
-		if((*it)->isTransparency()) drawUnderScene(it++, end);
+		if((*it)->isTransparency()) drawUnderScene(it+1, end);
 		(*it)->draw();
 	}
 };

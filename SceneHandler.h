@@ -1,4 +1,5 @@
 #pragma once
+#include <deque>
 #include <vector>
 #include <map>
 
@@ -7,7 +8,7 @@
 
 class SceneHandler{
 public:
-	typedef std::vector<Scene> SceneStack;
+	typedef std::deque<Scene> SceneStack;
 	typedef SceneStack::iterator iterator;
 
 	void goToNextScene();

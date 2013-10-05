@@ -14,12 +14,12 @@ bool SceneHandler::isNotHaveNextScene(){
 }
 
 void SceneHandler::goToNextScene(){
-	m_currentScene = m_SceneStack.back();
-	m_SceneStack.pop_back();
+	m_currentScene = m_SceneStack.front();
+	m_SceneStack.pop_front();
 }
 
 void SceneHandler::setNextScene(Scene scene){
-	m_SceneStack.push_back(scene);
+	m_SceneStack.push_front(scene);
 }
 
 Scene SceneHandler::getCurrentScene(){
