@@ -62,6 +62,12 @@ void IrrAdapter::Drawer3DImpl::setResouceName(tString name){
 		m_Node->getMaterial(15).MaterialType = irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL_REF;
 		//m_Node->setMaterialFlag(irr::video::EMF_ZBUFFER, true);
 		//m_Node->setMaterialFlag(irr::video::EMF_ZWRITE_ENABLE, true);
+		m_Node->setMaterialFlag(irr::video::EMF_BILINEAR_FILTER,false);
+		//auto gpu = GetSingleton<IrrApp>()->accessVideoDriver()->getGPUProgrammingServices();
+		//auto celMat = gpu->addHighLevelShaderMaterialFromFiles(
+		//	"cel.hlsl", "vertexMain", irr::video::EVST_VS_2_0,
+		//	"cel.hlsl", "pixelMain", irr::video::EPST_PS_2_0, this);
+		//m_Node->setMaterialType((irr::video::E_MATERIAL_TYPE)celMat);
 	}
 }
 void IrrAdapter::Drawer3DImpl::setPosition(Glas::Vector3f pos){
