@@ -1,7 +1,7 @@
 #pragma once
 #include <deque>
 #include <vector>
-#include <map>
+#include <array>
 
 #include "IScene.h"
 #include <tString.h>
@@ -15,14 +15,14 @@ public:
 	void setNextScene(Scene scene);
 	Scene getCurrentScene();
 
-	void loadSceneStack(tString name);
-	void saveSceneStack(tString name);
+	void loadSceneStack(int name);
+	void saveSceneStack(int name);
 	
 	iterator getBegin();
 	iterator getEnd();
 	bool isNotHaveNextScene();
 private:
-	std::map<tString,SceneStack> m_PreservedScenes;
+	std::array<SceneStack,100> m_PreservedScenes;
 	Scene m_currentScene;
 	SceneStack m_SceneStack;
 };

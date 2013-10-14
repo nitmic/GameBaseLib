@@ -20,6 +20,10 @@ public:
 		return from + (to-from)*((double)currentFrame/(double)numOfFrames);
 	}
 
+	void restart(){
+		assert(currentFrame!=-1);
+		currentFrame = 0;
+	}
 
 	bool isAnimating(){
 		return currentFrame<numOfFrames;

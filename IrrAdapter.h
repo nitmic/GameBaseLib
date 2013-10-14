@@ -5,7 +5,7 @@
 
 #include <irrlicht.h>
 
-const irr::io::path IrrBlankXFile = "blank.x";
+const irr::io::path IrrBlankXFile = "./Mesh/blank.x";
 const irr::video::E_DRIVER_TYPE IrrDefaultEngine = irr::video::EDT_OPENGL;
 
 struct IrrSafeRelease{

@@ -26,10 +26,10 @@ Scene SceneHandler::getCurrentScene(){
 	return m_currentScene;
 }
 
-void SceneHandler::loadSceneStack(tString name){
+void SceneHandler::loadSceneStack(int name){
 	m_SceneStack = m_PreservedScenes[name];
 }
 
-void SceneHandler::saveSceneStack(tString name){
+void SceneHandler::saveSceneStack(int name){
 	m_PreservedScenes[name] = m_SceneStack;
 }
