@@ -26,7 +26,7 @@ murmuurVIDEO::murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer
 murmuurVIDEO::murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer *timer, int desiredW, 
                      int desiredH, IMeshSceneNode *outputMesh) : _vdVideoDriver(irrVideoDriver), 
                      _itTimer(timer), _iDesiredH(desiredH), _iDesiredW(desiredW), 
-                     mnOutputMesh(outputMesh)  {    
+                     mnOutputMesh(outputMesh){
    _initAV();   
 } ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 

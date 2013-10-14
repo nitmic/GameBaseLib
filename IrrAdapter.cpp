@@ -57,7 +57,7 @@ namespace{
 };
 
 void IrrApp::AppLoop(){
-	auto fpsModerator = TUL::FPSModerator(10);
+	auto fpsModerator = TUL::FPSModerator(60);
 	auto lastFPS = -1;
 	auto driver = accessVideoDriver();
 	auto sm = accessSceneManager();

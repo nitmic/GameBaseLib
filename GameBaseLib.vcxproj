@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackgroundIrrAdapter.h" />
+    <ClInclude Include="ImageIrrAdapter.h" />
     <ClInclude Include="LerpAnimation.h" />
     <ClInclude Include="SpriteIrrAdapter.h" />
     <ClInclude Include="3DObjectIrrAdapter.h" />

@@ -143,5 +143,8 @@
     <ClInclude Include="LerpAnimation.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ImageIrrAdapter.h">
+      <Filter>ヘッダー ファイル\Adapter</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

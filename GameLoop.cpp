@@ -33,5 +33,5 @@ void GameLoop::draw(){
 			__impl__->sceneHandler.getEnd()
 		);
 	}
-	__impl__->sceneHandler.getCurrentScene()->draw();
+	//__impl__->sceneHandler.getCurrentScene()->draw();
 }

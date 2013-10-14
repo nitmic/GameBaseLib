@@ -53,6 +53,12 @@ namespace IrrAdapter{
 		assert(m_Object->tex!=nullptr);
 		m_name = name;
 	}
+	void Sprite::setResouce(Image tex){
+		if(m_Object->tex==tex) return;
+		m_Object->tex = tex;
+		assert(m_Object->tex!=nullptr);
+		m_name = _T("");
+	}
 	void Sprite::setPriority(int degree){
 		assert(degree>=0);
 		m_Degree = degree;

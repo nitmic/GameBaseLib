@@ -13,6 +13,8 @@ namespace IrrAdapter{
 namespace IrrAdapter{
 	struct SpriteData;
 
+	class Image;
+
 	class Sprite{
 	public:
 		Sprite();
@@ -20,6 +22,7 @@ namespace IrrAdapter{
 		void setPosition(Glas::Vector2i pos);
 		void setResouceName(tString name);
 		void setPriority(int degree);
+		void setResouce(Image tex);
 		void draw();
 	private:
 		std::shared_ptr<SpriteData> m_Object; 
