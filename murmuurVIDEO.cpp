@@ -15,7 +15,7 @@ static void handle_sigint(int signum) {
 // constructor default //////////////////////////////////////////////////////////////////////////////////////
 murmuurVIDEO::murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer *timer,  
                      int desiredW, int desiredH) : _vdVideoDriver(irrVideoDriver), 
-                     _itTimer(timer), _iDesiredH(desiredH), _iDesiredW(desiredW) {    
+                     /*_itTimer(timer), */_iDesiredH(desiredH), _iDesiredW(desiredW) {    
    this->mnOutputMesh = NULL;
    psVideostate = Closed;
    _initAV();
@@ -25,7 +25,7 @@ murmuurVIDEO::murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer
 // constructor alternate mesh output ////////////////////////////////////////////////////////////////////////
 murmuurVIDEO::murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer *timer, int desiredW, 
                      int desiredH, IMeshSceneNode *outputMesh) : _vdVideoDriver(irrVideoDriver), 
-                     _itTimer(timer), _iDesiredH(desiredH), _iDesiredW(desiredW), 
+                     /*_itTimer(timer), */_iDesiredH(desiredH), _iDesiredW(desiredW), 
                      mnOutputMesh(outputMesh){
    _initAV();   
 } ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,8 +195,9 @@ bool murmuurVIDEO::refresh(void) {
 allaudiodone:
    if (_bHasVideo) {
       // process the next video frame from the buffer      
-      if (_itTimer->getRealTime() - _lLastTime > (dSecondsPerFrame*1000)) {
-         _lLastTime = _itTimer->getRealTime();
+      //if (_itTimer->getRealTime() - _lLastTime > (dSecondsPerFrame*1000)) {
+	   if(fps.step()){
+         //_lLastTime = _itTimer->getRealTime();
          _frFrame = _getNextFrame();
          if (_frFrame != NULL) {
             if (img_convert_ctx == NULL) {
@@ -236,7 +237,9 @@ allaudiodone:
             //printf("Dumping Frame: %d  ::  FrameRate: %f\n", iActualFrame, fFramerate);
 
             // Dump the frame
-            _DumpFrame(_frFrameRGB, _iDesiredW, _iDesiredH, needResize);
+            if(!_DumpFrame(_frFrameRGB, _iDesiredW, _iDesiredH, needResize)){
+				printf("");
+			}
 
             // increase frame/time counts
             iActualFrame++;
@@ -252,9 +255,17 @@ allaudiodone:
    return true;
 } ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#include "ImageIrrAdapter.h"
+IrrAdapter::Image murmuurVIDEO::decode(){
+	//assert(_txCurrentTexture!=NULL);
+	if(_txCurrentTexture==NULL) return IrrAdapter::Image(nullptr);
+	return IrrAdapter::Image(_txCurrentTexture);
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // draw the current texture onscreen ////////////////////////////////////////////////////////////////////////
-void murmuurVIDEO::drawVideoTexture(void) {
+void murmuurVIDEO::drawVideoTexture(void){
    if (_txCurrentTexture != NULL) {
       if (mnOutputMesh != NULL) {
          if (!_bFrameDisplayed) {
@@ -412,6 +423,7 @@ bool murmuurVIDEO::open(core::stringc sFileName) {
    } else {
       return false;
    }
+
 } ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -437,6 +449,7 @@ bool murmuurVIDEO::_DumpFrame(AVFrame *pFrame, int width, int height, bool needR
         _txCurrentTexture = _vdVideoDriver->addTexture("movie", _imCurrentImage);
     }
 
+	if(_txCurrentTexture==NULL) return false;
     _p = (s32*)_txCurrentTexture->lock ();
     _pimage = (s32*)_imCurrentImage->lock ();
 
@@ -589,6 +602,7 @@ StreamPtr murmuurVIDEO::_getAVVideoStream(FilePtr file, int streamnum) {
          fFramerate = (float)file->FmtCtx->streams[i]->r_frame_rate.num;
          dSecondsPerFrame = (double)file->FmtCtx->streams[i]->r_frame_rate.den / 
             file->FmtCtx->streams[i]->r_frame_rate.num;
+		 fps.setFPS(1/dSecondsPerFrame);
          fDuration = (float)file->FmtCtx->streams[i]->duration;
          iNum_frames = (int)file->FmtCtx->streams[i]->nb_frames;
 

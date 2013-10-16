@@ -19,7 +19,7 @@ struct IrrApp::Impl{
 
 IrrApp::IrrApp(bool fpsDisplay){
 	__impl__ = std::make_shared<Impl>();
-	__impl__->fpsDisplay = fpsDisplay;
+	__impl__->fpsDisplay = true;
 	__impl__->m_onFrameUpdate = [](){return true;};
 	__impl__->m_onFrameDraw = [](){};
 }
@@ -32,9 +32,9 @@ void IrrApp::setOnFrameDraw(std::function<void(void)> func){
 	__impl__->m_onFrameDraw = func;
 }
 
-bool IrrApp::Setup(){
+bool IrrApp::Setup(int width, int height){
 	auto device_raw =irr::createDevice(
-		IrrDefaultEngine, irr::core::dimension2d<irr::u32>(800, 600), 32,
+		IrrDefaultEngine, irr::core::dimension2d<irr::u32>(width, height), 32,
 		false, true, false, nullptr
 	);
 	if (!device_raw) return false;
@@ -59,31 +59,28 @@ namespace{
 void IrrApp::AppLoop(){
 	auto fpsModerator = TUL::FPSModerator(60);
 	auto lastFPS = -1;
-	auto driver = accessVideoDriver();
-	auto sm = accessSceneManager();
-	auto env =  accessGUIEnvironment(); 
 
 	while(__impl__->device->run()){
 		//アクティブじゃなかったら処理しない
-		if(!__impl__->device->isWindowActive()){
+		/*if(!__impl__->device->isWindowActive()){
 			//ビジーループを回避するために
 			__impl__->device->yield(); 
-		}else if(fpsModerator.step()){
-			visibleReset(sm->getRootSceneNode());
-			sm->getRootSceneNode()->setVisible(true);
+		}else */if(fpsModerator.step()){
+			visibleReset(accessSceneManager()->getRootSceneNode());
+			accessSceneManager()->getRootSceneNode()->setVisible(true);
 
 			if(!__impl__->m_onFrameUpdate()) break;
 			__impl__->m_onFrameDraw();
-			driver->beginScene(true, true, irr::video::SColor(255,100,101,140));
-			sm->drawAll();
-			env->drawAll();
+			accessVideoDriver()->beginScene(true, true, irr::video::SColor(255,100,101,140));
+			accessSceneManager()->drawAll();
+			accessGUIEnvironment()->drawAll();
 			IrrAdapter::DrawSprite();
-			driver->endScene();
+			accessVideoDriver()->endScene();
 		}else{
 			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 		}
 		
-		auto fps = driver->getFPS();
+		auto fps = accessVideoDriver()->getFPS();
 		if(lastFPS != fps && __impl__->fpsDisplay){
 			toStringStream ostr;
 			ostr << _T("fps: ") << fps;

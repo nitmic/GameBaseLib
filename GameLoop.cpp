@@ -27,11 +27,9 @@ bool GameLoop::update(){
 }
 
 void GameLoop::draw(){
-	if(__impl__->sceneHandler.getCurrentScene()->isTransparency()){
-		drawUnderScene(
-			__impl__->sceneHandler.getBegin(),
-			__impl__->sceneHandler.getEnd()
-		);
-	}
+	drawUnderScene(
+		__impl__->sceneHandler.getBegin(),
+		__impl__->sceneHandler.getEnd()
+	);
 	//__impl__->sceneHandler.getCurrentScene()->draw();
 }

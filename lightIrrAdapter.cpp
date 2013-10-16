@@ -6,11 +6,12 @@
 #include "IrrAdapter.h"
 
 namespace IrrAdapter{
-	Light::Light(){
-		auto node = GetSingleton<IrrApp>()->accessSceneManager()->addLightSceneNode(
+	Light::Light() : m_pNode(
+		GetSingleton<IrrApp>()->accessSceneManager()->addLightSceneNode(
 			nullptr, Glas::Vector3f(0,0,-10), irr::video::SColorf(0xFFFFFFFF),10.0f
-		);
-		m_pNode = std::shared_ptr<irr::scene::ILightSceneNode>(node, IrrSafeRemove());
+		)
+	){
+		m_pNode->setLightType(irr::video::ELT_DIRECTIONAL);
 	}
 	Light::~Light(){}
 	void Light::setLightDirection(Glas::EulerAngle3r d){

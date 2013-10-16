@@ -13,6 +13,11 @@
 //#define SOUND_OPENAL
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <FPSModerator.h>
+namespace IrrAdapter{
+	class Image;
+};
+
 
 // includes /////////////////////////////////////////////////////////////////////////////////////////////////
 #include <irrlicht.h>
@@ -71,7 +76,8 @@ enum ePlaystate { Closed, Playing, Paused, Stopped };
 // main class definition ////////////////////////////////////////////////////////////////////////////////////
 class murmuurVIDEO {
 private: ////////////////////////////////////////////////////////////////////////////////////////////////////    
-   irr::ITimer *_itTimer;
+	TUL::FPSModerator fps;
+   //irr::ITimer *_itTimer;
     irr::video::IVideoDriver *_vdVideoDriver;
     irr::video::IImage *_imCurrentImage;
     irr::video::ITexture *_txCurrentTexture;
@@ -82,7 +88,7 @@ private: ///////////////////////////////////////////////////////////////////////
    int _iDesiredH;
    int _iDesiredW;
    
-    unsigned long _lLastTime;   
+   // unsigned long _lLastTime;   
    std::vector<AVFrame> _frFrame_Buffer;    
    bool _bFrameDisplayed;
    AVFrame *_frFrame;
@@ -131,6 +137,8 @@ public: ////////////////////////////////////////////////////////////////////////
    murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer *timer, int desiredW, int desiredH, IMeshSceneNode *outputMesh);   
    bool open(core::stringc sFileName);
    bool refresh(void);
+   IrrAdapter::Image decode();
+
    void drawVideoTexture(void);
    void changeResolution(int w, int h);
    void close(void);

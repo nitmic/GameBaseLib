@@ -75,6 +75,9 @@
     <ClCompile Include="BackgroundIrrAdapter.cpp">
       <Filter>ソース ファイル\Adapter</Filter>
     </ClCompile>
+    <ClCompile Include="ImageIrrAdapter.cpp">
+      <Filter>ソース ファイル\Adapter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">

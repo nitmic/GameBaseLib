@@ -6,9 +6,11 @@
 #include <functional>
 
 #include "IrrAdapter.h"
+#include "ImageIrrAdapter.h"
 
 namespace IrrAdapter{
 	struct SpriteData{
+		SpriteData() : tex(nullptr){}
 		irr::video::ITexture * tex;
 		irr::core::vector2di pos;
 	};
@@ -54,10 +56,9 @@ namespace IrrAdapter{
 		m_name = name;
 	}
 	void Sprite::setResouce(Image tex){
-		if(m_Object->tex==tex) return;
-		m_Object->tex = tex;
-		assert(m_Object->tex!=nullptr);
-		m_name = _T("");
+		if(m_Object->tex==tex.getRaw()) return;
+		m_Object->tex = tex.getRaw();
+		m_name = tex.getName();
 	}
 	void Sprite::setPriority(int degree){
 		assert(degree>=0);

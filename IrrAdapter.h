@@ -8,6 +8,7 @@
 const irr::io::path IrrBlankXFile = "./Mesh/blank.x";
 const irr::video::E_DRIVER_TYPE IrrDefaultEngine = irr::video::EDT_OPENGL;
 
+
 struct IrrSafeRelease{
 	template<class T>
 	void operator()(T * p){
@@ -36,8 +37,8 @@ struct IrrSafeRemove{
 class IrrApp : public Singleton<IrrApp>{
 	friend Singleton<IrrApp>;
 public:
-	IrrApp(bool fpsDisplay=false);
-	bool    Setup();
+	IrrApp(bool fpsDisplay=true);
+	bool    Setup(int width, int height);
 	void	setOnFrameUpdate(std::function<bool(void)> func);
 	void	setOnFrameDraw(std::function<void(void)> func);
 	void	AppLoop();

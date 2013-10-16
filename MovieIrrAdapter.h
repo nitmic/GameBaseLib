@@ -16,26 +16,28 @@
 #pragma comment(lib, "swscale.lib")
 #endif
 
-
+/*
 namespace irr{
 	namespace scene{
 		class IMeshSceneNode;
 	};
-};
+};*/
 
 class murmuurVIDEO;
 
 namespace IrrAdapter{
+	class Image;
 	class Movie{
 	public:
-		Movie();
+		Movie(int w=800, int h=600);
+		void changeDecodeSize(int w, int h);
 		bool open(std::string name);
 		bool refresh();
 		void close();
-		void draw();
+		Image decode();
 		~Movie();
 	private:
-		std::shared_ptr<irr::scene::IMeshSceneNode> m_pNode;
+		//std::shared_ptr<irr::scene::IMeshSceneNode> m_pNode;
 		std::shared_ptr<murmuurVIDEO> m_VideoPlayer;
 		bool m_Playing;
 	};

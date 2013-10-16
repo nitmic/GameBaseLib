@@ -15,7 +15,7 @@ namespace IrrAdapter{
 			m_Node = std::shared_ptr<irr::scene::ICameraSceneNode>(node, IrrSafeRemove());
 
 			auto light = GetSingleton<IrrApp>()->accessSceneManager()->addLightSceneNode(
-				m_Node.get(), Glas::Vector3f(0,0,10), irr::video::SColorf(0xFFFFFFFF), 5.0f
+				m_Node.get(), Glas::Vector3f(0,0,10), irr::video::SColorf(0xFFFFFFFF), 10.0f
 			);
 			m_Light = std::shared_ptr<irr::scene::ILightSceneNode>(light, IrrSafeRemove());
 			m_Light->setLightType(irr::video::ELT_DIRECTIONAL);
