@@ -37,7 +37,6 @@ namespace IrrAdapter{
 		Image decode();
 		~Movie();
 	private:
-		//std::shared_ptr<irr::scene::IMeshSceneNode> m_pNode;
 		std::shared_ptr<murmuurVIDEO> m_VideoPlayer;
 		bool m_Playing;
 	};

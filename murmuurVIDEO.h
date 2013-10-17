@@ -81,7 +81,7 @@ private: ///////////////////////////////////////////////////////////////////////
     irr::video::IVideoDriver *_vdVideoDriver;
     irr::video::IImage *_imCurrentImage;
     irr::video::ITexture *_txCurrentTexture;
-
+	
    FilePtr _fpFile;
     StreamPtr _spStreamA, _spStreamV;
    bool _bHasAudio, _bHasVideo;
