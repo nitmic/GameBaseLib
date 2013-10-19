@@ -9,9 +9,15 @@ namespace irr{
 };
 
 namespace IrrAdapter{
+	/*
+	*@class IrrAdapter::Image
+	*  ‚½‚¾‚Ì‘‹ŒûBÓ–±‚Í–³‚µ
+	*/
 	class Image{
 	public:
 		typedef irr::video::ITexture * Raw;
+
+		Image() : tex(nullptr){};
 		Image(tString name);
 		Image(Raw raw);
 		tString getName();

@@ -3,6 +3,7 @@
 #include "murmuurVIDEO.h"
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#include <assert.h>
 
 // audio hard quit //////////////////////////////////////////////////////////////////////////////////////////
 static volatile int quitnow = 0;
@@ -34,6 +35,7 @@ murmuurVIDEO::murmuurVIDEO(irr::video::IVideoDriver *irrVideoDriver, irr::ITimer
 // initialise audio/video ///////////////////////////////////////////////////////////////////////////////////
 bool murmuurVIDEO::_initAV(void) {
    // initial video flags
+   first_time = true;
    bVideoLoaded = false;
    psVideostate = Closed;
    _vdVideoDriver->setTextureCreationFlag(ETCF_CREATE_MIP_MAPS, false);
@@ -124,6 +126,8 @@ AVFrame *murmuurVIDEO::_getNextFrame(void) {
 
 // refresh audio/video //////////////////////////////////////////////////////////////////////////////////////
 bool murmuurVIDEO::refresh(void) {
+	if(psVideostate!=Playing) return false;
+
    static struct SwsContext *img_convert_ctx;
    static int currentX = 0;
    static int currentY = 0;
@@ -196,7 +200,7 @@ allaudiodone:
    if (_bHasVideo) {
       // process the next video frame from the buffer      
       //if (_itTimer->getRealTime() - _lLastTime > (dSecondsPerFrame*1000)) {
-	   if(fps.step()){
+	   if(first_time || fps.step()){
          //_lLastTime = _itTimer->getRealTime();
          _frFrame = _getNextFrame();
          if (_frFrame != NULL) {
@@ -250,7 +254,8 @@ allaudiodone:
          }
       } 
    }
-
+   
+   assert(_txCurrentTexture!=NULL);
    // success, more audio/video to follow
    return true;
 } ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,8 +263,8 @@ allaudiodone:
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include "ImageIrrAdapter.h"
 IrrAdapter::Image murmuurVIDEO::decode(){
-	//assert(_txCurrentTexture!=NULL);
-	if(_txCurrentTexture==NULL) return IrrAdapter::Image(nullptr);
+	assert(_txCurrentTexture!=NULL);
+	if(_txCurrentTexture==NULL) return IrrAdapter::Image();
 	return IrrAdapter::Image(_txCurrentTexture);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -429,14 +434,12 @@ bool murmuurVIDEO::open(core::stringc sFileName) {
 
 // dump the frame to texture ////////////////////////////////////////////////////////////////////////////////
 bool murmuurVIDEO::_DumpFrame(AVFrame *pFrame, int width, int height, bool needResize) {
-    static char first_time = 1;
-
     if (first_time) {
       _imCurrentImage = _vdVideoDriver->createImageFromData(irr::video::ECF_A8R8G8B8,
                        irr::core::dimension2d<irr::u32>(width, height),
                        pFrame->data[0],
                        true);
-        first_time = 0;
+        first_time = false;
         _txCurrentTexture = _vdVideoDriver->addTexture("movie", _imCurrentImage);
     }
 
@@ -836,6 +839,7 @@ void murmuurVIDEO::changeResolution(int w, int h) {
 
 // close the current active file ////////////////////////////////////////////////////////////////////////////
 void murmuurVIDEO::close(void) {
+   if(psVideostate==Closed) return;
    // Free the RGB image
    if (_iBuffer != NULL)
       delete [] _iBuffer;
@@ -875,8 +879,5 @@ void murmuurVIDEO::close(void) {
 
 
 // destruct /////////////////////////////////////////////////////////////////////////////////////////////////
-murmuurVIDEO::~murmuurVIDEO() {   
-   if (psVideostate != Closed) {
-      close();
-   }
-} //////////////////////////////////////////////////////////////////////////////////////////////////////////
+murmuurVIDEO::~murmuurVIDEO(){}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////

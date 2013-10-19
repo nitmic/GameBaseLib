@@ -14,19 +14,21 @@ namespace IrrAdapter{
 	struct SpriteData;
 
 	class Image;
-
+	
+	/*
+	*@class IrrAdapter::Sprite
+	*  画像オブジェクトの描画。　画像オブジェクトの責任を持つ
+	*/
 	class Sprite{
 	public:
 		Sprite();
-		~Sprite(){}
 		void setPosition(Glas::Vector2i pos);
 		void setResouceName(tString name);
 		void setPriority(int degree);
-		void setResouce(Image tex);
+		void setResouce(std::shared_ptr<Image> tex);
 		void draw();
 	private:
-		std::shared_ptr<SpriteData> m_Object; 
+		std::shared_ptr<SpriteData> m_Object;
 		int m_Degree;
-		tString m_name;
 	};
 };

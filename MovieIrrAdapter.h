@@ -16,28 +16,37 @@
 #pragma comment(lib, "swscale.lib")
 #endif
 
-/*
-namespace irr{
-	namespace scene{
-		class IMeshSceneNode;
-	};
-};*/
+namespace TUL{
+	class MovieDecoder;
+};
 
+namespace irr{
+	namespace video{
+		class IImage;
+	};
+};
 class murmuurVIDEO;
 
 namespace IrrAdapter{
 	class Image;
+	/*
+	*@class IrrAdapter::Movie
+	*  画像オブジェクトの生成。　画像オブジェクトおよびデコーダ本体の責任を持つ
+	*/
 	class Movie{
 	public:
-		Movie(int w=800, int h=600);
+		Movie() : m_Output(nullptr){}
+		Movie(std::shared_ptr<Image> & output, int w=800, int h=600);
 		void changeDecodeSize(int w, int h);
 		bool open(std::string name);
 		bool refresh();
 		void close();
-		Image decode();
-		~Movie();
 	private:
-		std::shared_ptr<murmuurVIDEO> m_VideoPlayer;
-		bool m_Playing;
+		int m_W, m_H;
+		unsigned char * m_Raw;
+		irr::video::IImage * m_Image;
+		std::shared_ptr<Image> m_Output;
+		//std::shared_ptr<TUL::MovieDecoder> m_Decoder;
+		std::shared_ptr<murmuurVIDEO> m_Decoder;
 	};
 };

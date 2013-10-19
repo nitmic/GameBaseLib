@@ -1,47 +1,73 @@
 #include "MovieIrrAdapter.h"
 
 #include <Singleton.hpp>
+#include <Movie.h>
 
 #include "IrrAdapter.h"
-#include "murmuurVIDEO.h"
 #include "ImageIrrAdapter.h"
 
+#include "murmuurVIDEO.h"
+
 namespace IrrAdapter{
-	Movie::Movie(int w, int h){
-		auto node = GetSingleton<IrrApp>()->accessSceneManager()->addCubeSceneNode(1, nullptr, -1, irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0), irr::core::vector3df(2, 2, 1));
-		m_VideoPlayer = std::make_shared<murmuurVIDEO>(
-			GetSingleton<IrrApp>()->accessVideoDriver(),
-			GetSingleton<IrrApp>()->accessDevice()->getTimer(),
-			w,
-			h
+	Movie::Movie(std::shared_ptr<Image> & output, int w, int h) : m_Raw(nullptr), m_W(w), m_H(h){
+		if(output==nullptr) output = std::make_shared<Image>();
+		m_Output = output;
+		//m_Decoder = std::make_shared<TUL::MovieDecoder>(w, h);
+		m_Decoder = std::shared_ptr<murmuurVIDEO>(
+			new murmuurVIDEO(
+				GetSingleton<IrrApp>()->accessVideoDriver(), nullptr, w, h
+			), SafeReleaseMurmuur
 		);
-		m_Playing = false;
+
 	}
 
 	void Movie::changeDecodeSize(int w, int h){
-		m_VideoPlayer->changeResolution(w,h);
+		assert(m_Output!=nullptr);
+		//m_Decoder->setScreen(w,h);
+		m_Decoder->changeResolution(w, h);
 	}
 
 	bool Movie::open(std::string name){
-		return m_Playing = m_VideoPlayer->open(name.c_str());
-	}
-	Image Movie::decode(){
-		return m_VideoPlayer->decode();
+		assert(m_Output!=nullptr);
+		return m_Decoder->open(name.c_str());
 	}
 
 	bool Movie::refresh(){
-		if(m_Playing && m_VideoPlayer->refresh()){
-			return true;
+		assert(m_Output!=nullptr);
+
+		//if(m_Decoder->getState()!=TUL::MovieDecoder::Playing) return false;
+		if(!m_Decoder->refresh()) return false;
+
+		/*
+		auto nextRaw = m_Decoder->decode();
+		if(!nextRaw) return false;
+
+		if(m_Raw!=nextRaw){
+			m_Image = GetSingleton<IrrApp>()->accessVideoDriver()->createImageFromData(
+				irr::video::ECF_A8R8G8B8,
+				irr::core::dimension2d<irr::u32>(m_W, m_H),
+				nextRaw,
+				true
+			);
+			m_Raw = nextRaw;
+			*m_Output = Image(GetSingleton<IrrApp>()->accessVideoDriver()->addTexture("movie", m_Image));
 		}
-		m_Playing = false;
-		return false;
+		auto p = (int*)(m_Output->getRaw()->lock());
+		auto pimage = (int*)m_Image->lock ();
+		for (int i = 0; i < m_W*m_H; i++) p[i] = pimage[i];
+		m_Output->getRaw()->unlock();
+		m_Image->unlock();
+		*/
+		*m_Output = m_Decoder->decode();
+
+		return true;
 	}
 
 	void Movie::close(){
-		if(!m_Playing) return;
-		m_VideoPlayer->close();
-		m_Playing = false;
-	}
+		assert(m_Output!=nullptr);
 
-	Movie::~Movie(){}
+		//if(m_Decoder->getState()==TUL::MovieDecoder::Closed) return;
+
+		m_Decoder->close();
+	}
 };

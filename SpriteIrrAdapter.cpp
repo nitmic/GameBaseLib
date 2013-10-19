@@ -11,7 +11,7 @@
 namespace IrrAdapter{
 	struct SpriteData{
 		SpriteData() : tex(nullptr){}
-		irr::video::ITexture * tex;
+		std::shared_ptr<Image> tex;
 		irr::core::vector2di pos;
 	};
 };
@@ -28,7 +28,7 @@ namespace IrrAdapter{
 			while(!it->empty()){
 				auto image = it->top();
 				driver->draw2DImage(
-					image->tex, image->pos, irr::core::recti(pos, image->tex->getSize()),
+					image->tex->getRaw(), image->pos, irr::core::recti(pos, image->tex->getRaw()->getSize()),
 					0, irr::video::SColor(255,255,255,255), true
 				);
 				it->pop();
@@ -50,15 +50,13 @@ namespace IrrAdapter{
 		m_Object->pos = pos;
 	}
 	void Sprite::setResouceName(tString name){
-		if(m_name==name) return;
-		m_Object->tex = GetSingleton<IrrApp>()->accessVideoDriver()->getTexture(name.c_str());
-		assert(m_Object->tex!=nullptr);
-		m_name = name;
+		if(m_Object->tex && m_Object->tex->getName()==name) return;
+
+		m_Object->tex = std::make_shared<Image>(name.c_str());
 	}
-	void Sprite::setResouce(Image tex){
-		if(m_Object->tex==tex.getRaw()) return;
-		m_Object->tex = tex.getRaw();
-		m_name = tex.getName();
+	void Sprite::setResouce(std::shared_ptr<Image> tex){
+		if(m_Object->tex && m_Object->tex->getRaw()==tex->getRaw()) return;
+		m_Object->tex = tex;
 	}
 	void Sprite::setPriority(int degree){
 		assert(degree>=0);

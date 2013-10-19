@@ -78,6 +78,7 @@ class murmuurVIDEO {
 private: ////////////////////////////////////////////////////////////////////////////////////////////////////    
 	TUL::FPSModerator fps;
    //irr::ITimer *_itTimer;
+	bool first_time;
     irr::video::IVideoDriver *_vdVideoDriver;
     irr::video::IImage *_imCurrentImage;
     irr::video::ITexture *_txCurrentTexture;
