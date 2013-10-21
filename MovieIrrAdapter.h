@@ -25,7 +25,6 @@ namespace irr{
 		class IImage;
 	};
 };
-class murmuurVIDEO;
 
 namespace IrrAdapter{
 	class Image;
@@ -46,7 +45,6 @@ namespace IrrAdapter{
 		unsigned char * m_Raw;
 		irr::video::IImage * m_Image;
 		std::shared_ptr<Image> m_Output;
-		//std::shared_ptr<TUL::MovieDecoder> m_Decoder;
-		std::shared_ptr<murmuurVIDEO> m_Decoder;
+		std::shared_ptr<TUL::MovieDecoder> m_Decoder;
 	};
 };
