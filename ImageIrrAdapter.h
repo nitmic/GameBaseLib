@@ -1,5 +1,5 @@
 #pragma once
-#include <tString.h>
+#include <tString.hpp>
 #include <GLAS.hpp>
 
 namespace irr{
@@ -18,9 +18,9 @@ namespace IrrAdapter{
 		typedef irr::video::ITexture * Raw;
 
 		Image() : tex(nullptr){};
-		Image(tString name);
+		Image(TUL::tString name);
 		Image(Raw raw);
-		tString getName();
+		TUL::tString getName();
 		int getHeight();
 		int getWidth();
 

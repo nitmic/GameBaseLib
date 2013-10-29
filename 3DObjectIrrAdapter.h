@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-#include <tString.h>
+#include <tString.hpp>
 #include "GLAS.hpp"
 
 namespace irr{
@@ -15,7 +15,7 @@ namespace IrrAdapter{
 	class Drawer3DImpl{
 	private:
 		std::shared_ptr<irr::scene::IAnimatedMeshSceneNode> m_Node;
-		tString m_name;
+		TUL::tString m_name;
 		Glas::Vector3f m_Pos;
 		Glas::Quaternion m_Attitude;
 		Glas::Vector3f m_Scale;
@@ -25,7 +25,7 @@ namespace IrrAdapter{
 		void setPosition(Glas::Vector3f pos);
 		void setAttitude(Glas::Quaternion attitude);
 		void setScale(float amount);
-		void setResouceName(tString name);
+		void setResouceName(TUL::tString name);
 		void draw();
 	};
 };

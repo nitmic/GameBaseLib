@@ -13,7 +13,7 @@ IrrAdapter::Drawer3DImpl::Drawer3DImpl(){
 	m_Node->setFrameLoop(0,28);
 }
 
-void IrrAdapter::Drawer3DImpl::setResouceName(tString name){
+void IrrAdapter::Drawer3DImpl::setResouceName(TUL::tString name){
 	if(name!=m_name){
 		m_name = name;
 		m_Node->setMesh(GetSingleton<IrrApp>()->accessSceneManager()->getMesh(name.c_str()));

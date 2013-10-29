@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <array>
-#include <tString.h>
+#include <tString.hpp>
 
 
 namespace irr{
@@ -16,11 +16,11 @@ namespace IrrAdapter{
 	public:
 		Background();
 		void setResouceName(
-			tString top, tString bottom=_T(""), tString left=_T(""), tString right=_T(""), tString front=_T(""), tString back=_T("")
+			TUL::tString top, TUL::tString bottom=_T(""), TUL::tString left=_T(""), TUL::tString right=_T(""), TUL::tString front=_T(""), TUL::tString back=_T("")
 		);
 		void draw();
 	private:
-		std::array<tString, 6> m_Names;
+		std::array<TUL::tString, 6> m_Names;
 		std::shared_ptr<irr::scene::ISceneNode> m_Node;
 	};
 };

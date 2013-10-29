@@ -6,7 +6,7 @@
 namespace IrrAdapter{
 	Background::Background(){}
 	void Background::setResouceName(
-		tString top, tString bottom, tString left, tString right, tString front, tString back
+		TUL::tString top, TUL::tString bottom, TUL::tString left, TUL::tString right, TUL::tString front, TUL::tString back
 	){
 		if(
 			top==m_Names[0]

@@ -1,4 +1,4 @@
 #pragma once
-#include <tString.h>
+#include <tString.hpp>
 
-void Debug(tString str);
+void Debug(TUL::tString str);

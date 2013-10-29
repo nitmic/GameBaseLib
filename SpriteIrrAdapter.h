@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-#include <tString.h>
+#include <tString.hpp>
 #include "GLAS.hpp"
 
 namespace IrrAdapter{
@@ -23,7 +23,7 @@ namespace IrrAdapter{
 	public:
 		Sprite();
 		void setPosition(Glas::Vector2i pos);
-		void setResouceName(tString name);
+		void setResouceName(TUL::tString name);
 		void setPriority(int degree);
 		void setResouce(std::shared_ptr<Image> tex);
 		void draw();

@@ -1,6 +1,6 @@
 #pragma once
 #include <memory>
-#include <tString.h>
+#include <tString.hpp>
 
 class AnalogStick;
 class Button;
@@ -18,7 +18,7 @@ public:
 	AnalogStick & getLStick();
 	AnalogStick & getRStick();
 	Button & getButton(DefaultButton button);
-	void applyKeyConfig(tString filename);
+	void applyKeyConfig(TUL::tString filename);
 protected:
 	void setLStick(float x, float y);
 	void setRStick(float x, float y);

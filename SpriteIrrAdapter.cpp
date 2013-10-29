@@ -49,7 +49,7 @@ namespace IrrAdapter{
 	void Sprite::setPosition(Glas::Vector2i pos){
 		m_Object->pos = pos;
 	}
-	void Sprite::setResouceName(tString name){
+	void Sprite::setResouceName(TUL::tString name){
 		if(m_Object->tex && m_Object->tex->getName()==name) return;
 
 		m_Object->tex = std::make_shared<Image>(name.c_str());
