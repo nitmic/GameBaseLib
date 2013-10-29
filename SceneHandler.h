@@ -4,7 +4,7 @@
 #include <array>
 
 #include "IScene.h"
-#include <tString.h>
+#include <tString.hpp>
 
 class SceneHandler{
 public:

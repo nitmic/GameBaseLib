@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include <FPSModerator.h>
-#include <tString.h>
+#include <tString.hpp>
 #include <boost/thread.hpp>
 #include <boost/date_time/posix_time/posix_time_duration.hpp>
 
@@ -82,7 +82,7 @@ void IrrApp::AppLoop(){
 		
 		auto fps = accessVideoDriver()->getFPS();
 		if(lastFPS != fps && __impl__->fpsDisplay){
-			toStringStream ostr;
+			TUL::toStringStream ostr;
 			ostr << _T("fps: ") << fps;
 			__impl__->device->setWindowCaption(ostr.str().c_str());
 			lastFPS = fps;

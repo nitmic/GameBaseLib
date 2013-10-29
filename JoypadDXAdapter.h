@@ -1,6 +1,6 @@
 #pragma once
 #include "Joypad.h"
-#include <tString.h>
+#include <tString.hpp>
 
 namespace DXAdapter{
 	class Joypad : public AbsJoypad{

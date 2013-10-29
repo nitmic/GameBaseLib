@@ -45,7 +45,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../TUL;../DXLibCore;../GameBaseLib;C:\Boost\boost_1_53_0;C:\irrlicht-1.8\include;C:\FFMpeg\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\SDL2\include;../TUL;../DXLibCore;../GameBaseLib;C:\Boost\boost_1_53_0;C:\irrlicht-1.8\include;C:\FFMpeg\include;$(DXSDK_DIR)Include</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
     </ClCompile>
@@ -97,6 +97,7 @@
     <ClInclude Include="ImageIrrAdapter.h" />
     <ClInclude Include="LerpAnimation.h" />
     <ClInclude Include="murmuurVIDEO.h" />
+    <ClInclude Include="Music.h" />
     <ClInclude Include="SpriteIrrAdapter.h" />
     <ClInclude Include="3DObjectIrrAdapter.h" />
     <ClInclude Include="AnalogStick.h" />
