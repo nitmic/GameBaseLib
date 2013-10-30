@@ -78,6 +78,7 @@
     <ClCompile Include="BackgroundIrrAdapter.cpp" />
     <ClCompile Include="ImageIrrAdapter.cpp" />
     <ClCompile Include="murmuurVIDEO.cpp" />
+    <ClCompile Include="Music.cpp" />
     <ClCompile Include="SpriteIrrAdapter.cpp" />
     <ClCompile Include="3DObjectIrrAdapter.cpp" />
     <ClCompile Include="AnalogStick.cpp" />

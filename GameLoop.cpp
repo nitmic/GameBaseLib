@@ -1,5 +1,6 @@
 #include "GameLoop.h"
 #include "SceneHandler.h"
+#include <Music.h>
 
 namespace{
 	void drawUnderScene(SceneHandler::iterator it, const SceneHandler::iterator & end){
@@ -31,5 +32,5 @@ void GameLoop::draw(){
 		__impl__->sceneHandler.getBegin(),
 		__impl__->sceneHandler.getEnd()
 	);
-	//__impl__->sceneHandler.getCurrentScene()->draw();
+	SDLAdapter::PlayTune();
 }
