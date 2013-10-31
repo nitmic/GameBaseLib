@@ -3,7 +3,7 @@
 #include <tString.hpp>
 
 struct Mix_Chunk;
-struct Mix_Music;
+typedef struct _Mix_Music Mix_Music;
 
 namespace SDLAdapter{
 	template <class T>
