@@ -80,7 +80,6 @@ void TPSCamera::setAttitude(Glas::Quaternion & q){
 }
 
 void TPSCamera::setDistance(float d){
-	if(d>20) return;
 	if(d<2.5) return;
 	__impl__->distance = d;
 }

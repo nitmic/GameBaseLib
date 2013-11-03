@@ -9,8 +9,6 @@ IrrAdapter::Drawer3DImpl::Drawer3DImpl(){
 	auto mesh = GetSingleton<IrrApp>()->accessSceneManager()->getMesh(IrrBlankXFile);
 	auto node = GetSingleton<IrrApp>()->accessSceneManager()->addAnimatedMeshSceneNode(mesh);
 	m_Node = std::shared_ptr<irr::scene::IAnimatedMeshSceneNode>(node, IrrSafeRemove());
-	m_Node->setAnimationSpeed(50);
-	m_Node->setFrameLoop(0,28);
 }
 
 void IrrAdapter::Drawer3DImpl::setResouceName(TUL::tString name){
@@ -68,6 +66,8 @@ void IrrAdapter::Drawer3DImpl::setResouceName(TUL::tString name){
 		//	"cel.hlsl", "vertexMain", irr::video::EVST_VS_2_0,
 		//	"cel.hlsl", "pixelMain", irr::video::EPST_PS_2_0, this);
 		//m_Node->setMaterialType((irr::video::E_MATERIAL_TYPE)celMat);
+		m_Node->setAnimationSpeed(5);
+		//m_Node->setFrameLoop(0,28);
 	}
 }
 void IrrAdapter::Drawer3DImpl::setPosition(Glas::Vector3f pos){
