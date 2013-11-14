@@ -67,7 +67,7 @@ void IrrAdapter::Drawer3DImpl::setResouceName(TUL::tString name){
 		//	"cel.hlsl", "pixelMain", irr::video::EPST_PS_2_0, this);
 		//m_Node->setMaterialType((irr::video::E_MATERIAL_TYPE)celMat);
 		m_Node->setAnimationSpeed(5);
-		//m_Node->setFrameLoop(0,28);
+		m_Node->setFrameLoop(0,59);
 	}
 }
 void IrrAdapter::Drawer3DImpl::setPosition(Glas::Vector3f pos){

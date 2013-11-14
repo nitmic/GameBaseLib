@@ -35,7 +35,7 @@ void IrrApp::setOnFrameDraw(std::function<void(void)> func){
 bool IrrApp::Setup(int width, int height){
 	auto device_raw =irr::createDevice(
 		IrrDefaultEngine, irr::core::dimension2d<irr::u32>(width, height), 32,
-		false, true, false, nullptr
+		false, false, false, nullptr
 	);
 	if (!device_raw) return false;
 	__impl__->device = std::shared_ptr<irr::IrrlichtDevice>(device_raw, IrrSafeRelease());
@@ -61,11 +61,7 @@ void IrrApp::AppLoop(){
 	auto lastFPS = -1;
 
 	while(__impl__->device->run()){
-		//アクティブじゃなかったら処理しない
-		/*if(!__impl__->device->isWindowActive()){
-			//ビジーループを回避するために
-			__impl__->device->yield(); 
-		}else */if(fpsModerator.step()){
+		if(fpsModerator.step()){
 			visibleReset(accessSceneManager()->getRootSceneNode());
 			accessSceneManager()->getRootSceneNode()->setVisible(true);
 
@@ -77,7 +73,11 @@ void IrrApp::AppLoop(){
 			IrrAdapter::DrawSprite();
 			accessVideoDriver()->endScene();
 		}else{
-			boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+			#ifdef _MSC_VER
+				Sleep(1);
+			#else
+				boost::this_thread::sleep(boost::posix_time::milliseconds(1));
+			#endif
 		}
 		
 		auto fps = accessVideoDriver()->getFPS();
