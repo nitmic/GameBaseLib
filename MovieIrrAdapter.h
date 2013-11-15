@@ -43,7 +43,7 @@ namespace IrrAdapter{
 	private:
 		int m_W, m_H;
 		unsigned char * m_Raw;
-		irr::video::IImage * m_Image;
+		std::shared_ptr<irr::video::IImage> m_Image;
 		std::shared_ptr<Image> m_Output;
 		std::shared_ptr<TUL::MovieDecoder> m_Decoder;
 	};

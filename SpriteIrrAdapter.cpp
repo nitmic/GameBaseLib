@@ -27,10 +27,12 @@ namespace IrrAdapter{
 		for(auto it=g_Sprites.begin();it!=g_Sprites.end();++it){
 			while(!it->empty()){
 				auto image = it->top();
-				driver->draw2DImage(
-					image->tex->getRaw(), image->pos, irr::core::recti(pos, image->tex->getRaw()->getSize()),
-					0, irr::video::SColor(255,255,255,255), true
-				);
+				if(image->tex->getRaw()){
+					driver->draw2DImage(
+						image->tex->getRaw(), image->pos, irr::core::recti(pos, image->tex->getRaw()->getSize()),
+						0, irr::video::SColor(255,255,255,255), true
+					);
+				}
 				it->pop();
 			}
 		}
